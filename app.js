@@ -31,5 +31,5 @@ app.all('*', function(req, res) {
 });
 
 app.listen(app.get('port'), function () {
-  console.log(`Example app listening on port ${port}!`);
+  console.log(`Example app listening on port ${app.get('port')}!`);
 });
