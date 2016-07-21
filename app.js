@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const port = process.env.port || 8080;
+app.set('port', (process.env.PORT || 8080));
 
 const meetup = require('meetup-api')({
   key: process.env.MEETUP_API_KEY
@@ -24,12 +24,12 @@ app.get('/v1/meetups/:status', function(req, res) {
   });
 });
 
-app.get('*', function(req, res) {
+app.all('*', function(req, res) {
   res.json({
     oops: 'Nothing to see here... yet.'
   });
 });
 
-app.listen(port, function () {
+app.listen(app.get('port'), function () {
   console.log(`Example app listening on port ${port}!`);
 });
