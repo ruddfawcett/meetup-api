@@ -11,6 +11,15 @@ const parameters = {
   group_urlname: process.env.MEETUP_GROUP_URL
 }
 
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    next();
+});
+
+
 app.get('/v1/meetups/:status', function(req, res) {
   parameters.status = req.params.status;
 
